@@ -10,7 +10,10 @@ export default {
         });
       }
 
-      if (!env.RETELL_API_KEY || !env.RETELL_AGENT_ID) {
+      const apiKey = env.RETELL_API_KEY;
+      const agentId = env.RETELL_AGENT_ID || "agent_3815bd5939a6301026ff5ea9e9";
+
+      if (!apiKey || !agentId) {
         return new Response(
           JSON.stringify({ error: "Missing RETELL_API_KEY or RETELL_AGENT_ID" }),
           { status: 500, headers: { "Content-Type": "application/json" } }
@@ -21,11 +24,11 @@ export default {
         const response = await fetch("https://api.retellai.com/create-web-call", {
           method: "POST",
           headers: {
-            "Authorization": `Bearer ${env.RETELL_API_KEY}`,
+            "Authorization": `Bearer ${apiKey}`,
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            agent_id: env.RETELL_AGENT_ID
+            agent_id: agentId
           })
         });
 
