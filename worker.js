@@ -18,7 +18,7 @@ export default {
       }
 
       try {
-        const response = await fetch("https://api.retellai.com/v2/create-web-call", {
+        const response = await fetch("https://api.retellai.com/create-web-call", {
           method: "POST",
           headers: {
             "Authorization": `Bearer ${env.RETELL_API_KEY}`,
