@@ -11,7 +11,8 @@ export default {
       }
 
       const apiKey = env.RETELL_API_KEY;
-      const agentId = env.RETELL_AGENT_ID || "agent_3815bd5939a6301026ff5ea9e9";
+      const agentId = env.RETELL_AGENT_ID || "agent_63a2d17181a180fa07435384a7
+";
 
       if (!apiKey || !agentId) {
         return new Response(
