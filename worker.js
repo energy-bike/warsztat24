@@ -29,9 +29,26 @@ export default {
           })
         });
 
-        const data = await response.json();
+        const text = await response.text();
+        let data = {};
+        try {
+          data = JSON.parse(text);
+        } catch {
+          data = { error: "Invalid JSON from Retell", raw: text };
+        }
+
+        if (!response.ok) {
+          return new Response(
+            JSON.stringify({
+              error: data.message || data.error || `Retell HTTP ${response.status}`,
+              details: data
+            }),
+            { status: response.status, headers: { "Content-Type": "application/json" } }
+          );
+        }
+
         return new Response(JSON.stringify(data), {
-          status: response.status,
+          status: 200,
           headers: { "Content-Type": "application/json" }
         });
       } catch (err) {
