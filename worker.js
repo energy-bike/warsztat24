@@ -37,7 +37,12 @@ export default {
         try {
           data = JSON.parse(text);
         } catch {
-          data = { error: "Invalid JSON from Retell", raw: text };
+          return new Response(
+            JSON.stringify({
+              error: `HTTP ${response.status} non-JSON: ${text.slice(0, 300) || "(empty)"}`
+            }),
+            { status: 502, headers: { "Content-Type": "application/json" } }
+          );
         }
 
         if (!response.ok) {
