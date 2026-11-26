@@ -3,88 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Warsztat24 – Wirtualny Recepcjonista 24/7 dla Warsztatów i Wulkanizacji</title>
-  <meta name="description" content="Automatyczny asystent głosowy dla warsztatów samochodowych, wulkanizacji i detailingu. Odbiera telefony 24/7 i umawia auta w Kalendarz Google." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Warsztat24 – Wirtualny Doradca Serwisowy 24/7 dla Warsztatów i Wulkanizacji</title>
+  <meta name="description" content="Adam – profesjonalny doradca głosowy 24/7 dla warsztatów samochodowych, wulkanizacji i detailingu. Przyjmuje zgłoszenia, zbiera dane o aucie i pomaga umówić wizytę." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #070a12;
       --surface: #0f1624;
-      --surface-2: #161f33;
+      --surface-2: #151f32;
+      --surface-elevated: #111929;
       --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.14);
       --border-accent: rgba(249, 115, 22, 0.45);
       --text: #f8fafc;
       --muted: #94a3b8;
+      --muted-strong: #cbd5e1;
       --accent: #f97316;
+      --accent-soft: #fdba74;
       --accent-glow: rgba(249, 115, 22, 0.25);
       --green: #10b981;
+      --green-bg: rgba(16, 185, 129, 0.12);
       --red: #ef4444;
+      --red-bg: rgba(239, 68, 68, 0.12);
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --shadow-card: 0 24px 60px rgba(0, 0, 0, 0.55);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-soft);
+      outline-offset: 2px;
     }
 
     .bg-grid {
-      background-image: 
-        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.024) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.024) 1px, transparent 1px);
       background-size: 44px 44px;
     }
 
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 22px; }
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
 
+    /* Nawigacja */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(7, 10, 18, 0.85);
-      backdrop-filter: blur(14px);
+      background: rgba(7, 10, 18, 0.84);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
+
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 72px;
+      height: 74px;
+      gap: 20px;
     }
+
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
       font-size: 21px;
       font-weight: 800;
       color: #fff;
       text-decoration: none;
       letter-spacing: -0.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
+
     .brand-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
       background: linear-gradient(135deg, #f97316, #ea580c);
       display: grid;
       place-items: center;
       font-size: 17px;
-      box-shadow: 0 4px 15px var(--accent-glow);
+      box-shadow: 0 6px 18px var(--accent-glow);
     }
-    .brand span { color: var(--accent); }
-    .nav-menu { display: flex; gap: 30px; align-items: center; }
-    .nav-menu a {
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-menu a:not(.btn) {
       color: var(--muted);
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
-      transition: color 0.2s;
+      white-space: nowrap;
+      transition: color 0.2s ease;
     }
-    .nav-menu a:hover { color: #fff; }
+
+    .nav-menu a:not(.btn):hover {
+      color: #fff;
+    }
 
     .btn {
       display: inline-flex;
@@ -95,94 +146,132 @@
       border-radius: 12px;
       font-weight: 700;
       font-size: 15px;
+      line-height: 1.2;
       text-decoration: none;
       cursor: pointer;
-      border: none;
-      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, filter 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      white-space: nowrap;
     }
+
     .btn-primary {
       background: linear-gradient(135deg, #f97316, #ea580c);
       color: #fff;
       box-shadow: 0 10px 28px var(--accent-glow);
     }
-    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.06); }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
     .btn-ghost {
       background: var(--surface);
       color: #fff;
-      border: 1px solid var(--border);
+      border-color: var(--border-strong);
     }
-    .btn-ghost:hover { border-color: var(--accent); background: var(--surface-2); }
 
+    .btn-ghost:hover {
+      border-color: var(--border-accent);
+      background: var(--surface-2);
+    }
+
+    /* Hero */
     .hero {
-      padding: 76px 0 84px;
+      padding: 78px 0 86px;
       position: relative;
     }
+
     .hero::before {
       content: "";
       position: absolute;
       top: -120px;
-      right: 5%;
-      width: 480px;
-      height: 480px;
-      background: radial-gradient(circle, rgba(249,115,22,0.16), transparent 65%);
+      right: 4%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.16), transparent 68%);
       pointer-events: none;
     }
+
     .hero-grid {
       display: grid;
       grid-template-columns: 1.12fr 0.88fr;
       gap: 52px;
       align-items: center;
+      position: relative;
     }
+
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
+      padding: 7px 14px;
       border-radius: 999px;
       background: rgba(249, 115, 22, 0.12);
       border: 1px solid var(--border-accent);
-      color: #fdba74;
+      color: var(--accent-soft);
       font-size: 13px;
       font-weight: 600;
       margin-bottom: 22px;
     }
+
     h1 {
-      font-size: 46px;
+      font-size: clamp(34px, 4.4vw, 48px);
       line-height: 1.12;
       font-weight: 800;
       letter-spacing: -1.2px;
       margin-bottom: 20px;
     }
+
     h1 span {
       background: linear-gradient(90deg, #fb923c, #f97316);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     .hero-sub {
-      font-size: 18px;
+      font-size: 17.5px;
       color: var(--muted);
       margin-bottom: 32px;
-      max-width: 550px;
+      max-width: 560px;
     }
-    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
     .hero-checks {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--muted);
     }
-    .hero-checks div { display: flex; align-items: center; gap: 7px; }
-    .hero-checks b { color: var(--green); }
 
+    .hero-checks div {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hero-checks b {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    /* Panel testowy */
     .demo-panel {
-      background: linear-gradient(180deg, var(--surface) 0%, #0b101b 100%);
+      background: linear-gradient(180deg, var(--surface-elevated) 0%, #0b101b 100%);
       border: 1px solid var(--border-accent);
-      border-radius: 22px;
+      border-radius: var(--radius-lg);
       padding: 32px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+      box-shadow: var(--shadow-card);
       position: relative;
     }
+
     .live-badge {
       display: inline-flex;
       align-items: center;
@@ -192,11 +281,13 @@
       text-transform: uppercase;
       letter-spacing: 0.6px;
       color: var(--green);
-      background: rgba(16, 185, 129, 0.12);
+      background: var(--green-bg);
+      border: 1px solid rgba(16, 185, 129, 0.25);
       padding: 5px 12px;
       border-radius: 99px;
       margin-bottom: 16px;
     }
+
     .dot {
       width: 8px;
       height: 8px;
@@ -204,38 +295,56 @@
       background: var(--green);
       animation: blink 1.6s infinite;
     }
+
     @keyframes blink {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(1.3); }
     }
-    .demo-panel h3 { font-size: 23px; font-weight: 800; margin-bottom: 8px; }
-    .demo-panel p { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+
+    .demo-panel h3 {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+
+    .demo-panel > p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
 
     .wave-box {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      height: 44px;
-      background: rgba(255,255,255,0.03);
+      gap: 6px;
+      height: 46px;
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
       border-radius: 12px;
       margin-bottom: 18px;
     }
+
     .bar {
       width: 4px;
       height: 10px;
       background: var(--accent);
       border-radius: 4px;
-      transition: height 0.2s;
+      transition: height 0.2s ease;
     }
-    .wave-box.speaking .bar { animation: sound 0.7s infinite ease-in-out; }
+
+    .wave-box.speaking .bar {
+      animation: sound 0.7s infinite ease-in-out;
+    }
+
     .wave-box.speaking .bar:nth-child(2) { animation-delay: 0.1s; }
     .wave-box.speaking .bar:nth-child(3) { animation-delay: 0.25s; }
     .wave-box.speaking .bar:nth-child(4) { animation-delay: 0.15s; }
     .wave-box.speaking .bar:nth-child(5) { animation-delay: 0.3s; }
     .wave-box.speaking .bar:nth-child(6) { animation-delay: 0.05s; }
     .wave-box.speaking .bar:nth-child(7) { animation-delay: 0.2s; }
+
     @keyframes sound {
       0%, 100% { height: 8px; }
       50% { height: 28px; }
@@ -243,75 +352,202 @@
 
     .prompts-tip {
       background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 12px;
-      padding: 14px;
+      padding: 15px 16px;
       margin-bottom: 20px;
       font-size: 13px;
-      color: #cbd5e1;
+      color: var(--muted-strong);
     }
-    .prompts-tip strong { display: block; color: #fff; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
-    .prompts-tip div { margin-bottom: 5px; }
-    .prompts-tip div:last-child { margin-bottom: 0; }
+
+    .prompts-tip strong {
+      display: block;
+      color: #fff;
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .prompts-tip div {
+      margin-bottom: 6px;
+    }
+
+    .prompts-tip div:last-child {
+      margin-bottom: 0;
+    }
 
     .btn-demo {
       width: 100%;
-      padding: 17px;
+      padding: 17px 18px;
       border-radius: 14px;
       border: none;
       background: var(--green);
-      color: #042f2e;
-      font-size: 16px;
+      color: #03261d;
+      font-family: inherit;
+      font-size: 15.5px;
       font-weight: 800;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: transform 0.2s ease, filter 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
       box-shadow: 0 10px 25px rgba(16, 185, 129, 0.25);
     }
-    .btn-demo:hover { filter: brightness(1.06); transform: translateY(-1px); }
+
+    .btn-demo:hover:not(:disabled) {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .btn-demo:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+
     .btn-demo.calling {
       background: var(--red);
       color: #fff;
       box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
     }
+
+    .call-status {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .call-status.error {
+      display: block;
+      background: var(--red-bg);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+    }
+
+    .call-status.info {
+      display: block;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--muted-strong);
+    }
+
     .phone-direct {
       text-align: center;
       margin-top: 14px;
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--muted);
     }
-    .phone-direct a { color: #fff; font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--accent); }
 
-    section { padding: 84px 0; border-top: 1px solid var(--border); }
-    .sec-title { text-align: center; max-width: 680px; margin: 0 auto 52px; }
-    .sec-title h2 { font-size: 34px; font-weight: 800; letter-spacing: -0.7px; margin-bottom: 12px; }
-    .sec-title p { color: var(--muted); font-size: 16px; }
+    .phone-direct a {
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px dashed var(--accent);
+    }
 
-    .niches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    /* Sekcje */
+    section {
+      padding: 86px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .sec-title {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 52px;
+    }
+
+    .sec-title h2 {
+      font-size: clamp(28px, 3.4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.7px;
+      line-height: 1.18;
+      margin-bottom: 12px;
+    }
+
+    .sec-title p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .niches {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
     .niche-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 28px;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
-    .niche-card:hover { border-color: var(--border-accent); }
-    .niche-icon { font-size: 28px; margin-bottom: 14px; }
-    .niche-card h3 { font-size: 19px; margin-bottom: 8px; }
-    .niche-card p { font-size: 14px; color: var(--muted); }
 
+    .niche-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .niche-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .niche-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .niche-card p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Kalkulator */
     .calc-wrapper {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 22px;
+      border-radius: var(--radius-lg);
       padding: 40px;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 40px;
       align-items: center;
     }
-    .range-block { margin-bottom: 26px; }
-    .range-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 10px; font-size: 15px; }
-    .range-top span { color: var(--accent); }
-    input[type="range"] { width: 100%; accent-color: var(--accent); cursor: pointer; height: 6px; }
+
+    .range-block {
+      margin-bottom: 26px;
+    }
+
+    .range-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .range-top span {
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .calc-note {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
     .loss-card {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -319,17 +555,40 @@
       padding: 32px;
       text-align: center;
     }
-    .loss-big { font-size: 44px; font-weight: 800; color: var(--red); margin: 10px 0; letter-spacing: -1px; }
 
-    .pricing { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 900px; margin: 0 auto; }
+    .loss-big {
+      font-size: clamp(36px, 4vw, 44px);
+      font-weight: 800;
+      color: var(--red);
+      margin: 10px 0;
+      letter-spacing: -1px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Cennik */
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
     .p-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 22px;
+      border-radius: var(--radius-lg);
       padding: 36px;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
-    .p-card.pro { border-color: var(--accent); background: linear-gradient(180deg, #141c2e 0%, var(--surface) 100%); }
+
+    .p-card.pro {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, #141c2e 0%, var(--surface) 100%);
+    }
+
     .ribbon {
       position: absolute;
       top: -13px;
@@ -341,34 +600,119 @@
       padding: 4px 14px;
       border-radius: 99px;
     }
-    .p-price { font-size: 40px; font-weight: 800; margin: 14px 0 4px; }
-    .p-price span { font-size: 15px; color: var(--muted); font-weight: 500; }
-    .p-setup { color: var(--accent); font-size: 13px; font-weight: 700; margin-bottom: 22px; }
-    .p-features { list-style: none; margin-bottom: 28px; }
-    .p-features li { padding: 9px 0; font-size: 14px; color: #cbd5e1; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .p-features li::before { content: "✓ "; color: var(--green); font-weight: 800; margin-right: 6px; }
 
+    .p-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .p-price {
+      font-size: 40px;
+      font-weight: 800;
+      margin: 14px 0 4px;
+      letter-spacing: -0.8px;
+    }
+
+    .p-price span {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .p-setup {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .p-features {
+      list-style: none;
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+
+    .p-features li {
+      padding: 9px 0;
+      font-size: 14px;
+      color: var(--muted-strong);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .p-features li:last-child {
+      border-bottom: none;
+    }
+
+    .p-features li::before {
+      content: "✓ ";
+      color: var(--green);
+      font-weight: 800;
+      margin-right: 6px;
+    }
+
+    /* Formularz */
     .order-box {
       max-width: 580px;
       margin: 0 auto;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 22px;
+      border-radius: var(--radius-lg);
       padding: 38px;
     }
-    .field { margin-bottom: 18px; }
-    .field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 7px; }
-    .field input, .field select {
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 7px;
+      color: var(--muted-strong);
+    }
+
+    .field input,
+    .field select {
       width: 100%;
       padding: 14px 16px;
       border-radius: 12px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       background: var(--bg);
       color: #fff;
       font-size: 15px;
       font-family: inherit;
+      transition: border-color 0.2s ease;
     }
-    .field input:focus, .field select:focus { outline: none; border-color: var(--accent); }
+
+    .field input:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-status {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+      display: none;
+    }
+
+    .form-status.success {
+      display: block;
+      background: var(--green-bg);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+    }
+
+    .form-status.error {
+      display: block;
+      background: var(--red-bg);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+    }
 
     footer {
       border-top: 1px solid var(--border);
@@ -378,10 +722,28 @@
       font-size: 13px;
     }
 
-    @media (max-width: 880px) {
-      .hero-grid, .niches, .calc-wrapper, .pricing { grid-template-columns: 1fr; }
-      h1 { font-size: 35px; }
-      .nav-menu { display: none; }
+    @media (max-width: 920px) {
+      .hero-grid,
+      .niches,
+      .calc-wrapper,
+      .pricing {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 52px 0 64px;
+      }
+
+      .calc-wrapper,
+      .order-box,
+      .demo-panel,
+      .p-card {
+        padding: 26px 22px;
+      }
+
+      .nav-menu {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -390,10 +752,10 @@
   <header>
     <div class="container nav">
       <a href="#" class="brand">
-        <div class="brand-icon">📞</div>
+        <div class="brand-icon" aria-hidden="true">📞</div>
         Warsztat<span>24</span>
       </a>
-      <nav class="nav-menu">
+      <nav class="nav-menu" aria-label="Nawigacja główna">
         <a href="#dla-kogo">Dla kogo</a>
         <a href="#kalkulator">Policz straty</a>
         <a href="#cennik">Cennik</a>
@@ -405,10 +767,10 @@
   <section class="hero" style="border-top: none;">
     <div class="container hero-grid">
       <div>
-        <div class="pill">⚡ Wirtualny recepcjonista 24/7 dla branży moto</div>
-        <h1>Nie odbierasz telefonu przy podnośniku? <span>Twój automat odbierze za Ciebie.</span></h1>
+        <div class="pill">⚡ Wirtualny doradca serwisowy 24/7 dla branży moto</div>
+        <h1>Nie odbierasz telefonu przy podnośniku? <span>Twój doradca odbierze za Ciebie.</span></h1>
         <p class="hero-sub">
-          Naturalnie brzmiący doradca telefoniczny odbiera połączenia 24/7, sprawdza wolne godziny w Twoim Kalendarzu Google, zapisuje auto i wysyła Ci gotowego SMS-a.
+          Adam — naturalnie brzmiący doradca serwisowy dla warsztatów i wulkanizacji — odbiera połączenia 24/7, wypytuje o auto i objawy, zbiera preferowany termin wizyty i przekazuje Ci gotowe zgłoszenie.
         </p>
         <div class="hero-cta">
           <a href="#start" class="btn btn-primary">Uruchom 14-dniowy test</a>
@@ -422,28 +784,29 @@
       </div>
 
       <div class="demo-panel">
-        <div class="live-badge"><div class="dot"></div> Linia testowa online</div>
+        <div class="live-badge"><div class="dot" aria-hidden="true"></div> Linia testowa online · Adam</div>
         <h3>Przetestuj teraz na żywo</h3>
-        <p>Kliknij przycisk poniżej i udawaj kierowcę dzwoniącego do wulkanizacji lub warsztatu:</p>
+        <p>Kliknij przycisk poniżej i porozmawiaj jak kierowca dzwoniący do warsztatu lub wulkanizacji:</p>
 
-        <div class="wave-box" id="wave-box">
+        <div class="wave-box" id="wave-box" aria-hidden="true">
           <div class="bar"></div><div class="bar"></div><div class="bar"></div>
           <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
         </div>
 
         <div class="prompts-tip">
-          <strong>Przykładowe pytania do przetestowania:</strong>
+          <strong>Przykładowe zgłoszenia do przetestowania:</strong>
           <div>• „Chciałbym umówić wymianę opon 17 cali na jutro rano”</div>
           <div>• „Coś stuka w zawieszeniu w Golfie, kiedy mogę podjechać?”</div>
-          <div>• „Ile kosztuje u was serwis klimatyzacji?”</div>
+          <div>• „Potrzebuję przeglądu i diagnostyki w Focusie z 2018 roku”</div>
         </div>
 
-        <button id="demo-btn" class="btn-demo">
-          🎙️ Kliknij i porozmawiaj z asystentem
+        <button id="demo-btn" type="button" class="btn-demo">
+          🎙️ Kliknij i porozmawiaj z Adamem
         </button>
+        <div id="call-status" class="call-status" role="status" aria-live="polite"></div>
 
         <div class="phone-direct">
-          Lub zadzwoń ze zwykłego telefonu: <a href="tel:+48680000000">+48 68 000 00 00</a>
+          Linia demonstracyjna WWW · Kontakt: <a href="tel:+48680000000">+48 68 000 00 00</a> (numer pokazowy)
         </div>
       </div>
     </div>
@@ -453,23 +816,23 @@
     <div class="container">
       <div class="sec-title">
         <h2>Stworzone dla firm, w których pracuje się rękami</h2>
-        <p>Gdy stoisz przy wyważarce, pod autem albo polerujesz lakier, nie możesz co 3 minuty wycierać rąk i odbierać telefonu.</p>
+        <p>Gdy stoisz przy wyważarce, pod autem albo polerujesz lakier, nie możesz co kilka minut przerywać pracy, żeby odebrać telefon.</p>
       </div>
       <div class="niches">
         <div class="niche-card">
-          <div class="niche-icon">🛞</div>
+          <div class="niche-icon" aria-hidden="true">🛞</div>
           <h3>Wulkanizacja i serwis opon</h3>
-          <p>Asystent pyta o rozmiar felg, opony na felgach czy przekładkę, podaje cenę z Twojego cennika i wpisuje auto w kalendarz co 30 minut.</p>
+          <p>Doradca dopytuje o rozmiar felg, typ opon oraz preferowany termin wizyty i porządkuje zgłoszenie do szybkiego wpisania w grafik.</p>
         </div>
         <div class="niche-card">
-          <div class="niche-icon">🔧</div>
+          <div class="niche-icon" aria-hidden="true">🔧</div>
           <h3>Warsztaty mechaniczne</h3>
-          <p>Zbiera markę, rocznik, opis usterki i umawia przyjęcie auta. Pilne awarie i lawety przełącza bezpośrednio na komórkę kierownika.</p>
+          <p>Zbiera markę, model, rocznik i dokładny opis usterki, ocenia pilność zgłoszenia i pomaga ustalić wygodny termin przyjęcia auta.</p>
         </div>
         <div class="niche-card">
-          <div class="niche-icon">✨</div>
+          <div class="niche-icon" aria-hidden="true">✨</div>
           <h3>Autodetailing i myjnie</h3>
-          <p>Odbiera zapytania o mycie detailingowe, korektę lakieru czy ceramikę i rezerwuje terminy bez odrywania Cię od maszyny polerskiej.</p>
+          <p>Odbiera zapytania o mycie detailingowe, korektę lakieru czy powłoki ochronne i zbiera dane do rezerwacji bez odrywania Cię od pracy.</p>
         </div>
       </div>
     </div>
@@ -479,26 +842,32 @@
     <div class="container">
       <div class="sec-title">
         <h2>Policz, ile pieniędzy zostawiasz konkurencji</h2>
-        <p>Kierowca, który słyszy sygnał zajętości, nie czeka — od razu wybiera kolejny warsztat z Google.</p>
+        <p>Kierowca, który nie dodzwania się za pierwszym razem, często od razu wybiera kolejny warsztat z mapy.</p>
       </div>
       <div class="calc-wrapper">
         <div>
           <div class="range-block">
-            <div class="range-top">Nieodebrane telefony dziennie: <span id="r-calls-txt">3 telefony</span></div>
-            <input type="range" id="r-calls" min="1" max="15" value="3">
+            <div class="range-top">
+              <label for="r-calls">Nieodebrane telefony dziennie:</label>
+              <span id="r-calls-txt">3 telefony</span>
+            </div>
+            <input type="range" id="r-calls" min="1" max="15" value="3" />
           </div>
           <div class="range-block">
-            <div class="range-top">Średnia wartość jednej wizyty: <span id="r-val-txt">250 zł</span></div>
-            <input type="range" id="r-val" min="100" max="1500" step="50" value="250">
+            <div class="range-top">
+              <label for="r-val">Średnia wartość jednej wizyty:</label>
+              <span id="r-val-txt">250 zł</span>
+            </div>
+            <input type="range" id="r-val" min="100" max="1500" step="50" value="250" />
           </div>
-          <p style="font-size: 13px; color: var(--muted);">
-            * Zakładamy ostrożnie, że tylko połowa (50%) nieodebranych telefonów to klienci, którzy umówiliby usługę (22 dni robocze w miesiącu).
+          <p class="calc-note">
+            Szacunek konserwatywny: 50% nieodebranych połączeń to realne zlecenia przy założeniu 22 dni roboczych w miesiącu.
           </p>
         </div>
         <div class="loss-card">
-          <div style="font-size: 14px; font-weight: 700; color: #cbd5e1;">Twoja miesięczna strata na nieodebranych połączeniach:</div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--muted-strong);">Szacowana miesięczna strata na nieodebranych połączeniach:</div>
           <div class="loss-big" id="loss-total">8 250 zł</div>
-          <p style="font-size: 14px; color: var(--muted);">Koszt asystenta zwraca się już po <strong>jednym</strong> uratowanym kliencie.</p>
+          <p style="font-size: 14px; color: var(--muted);">Koszt wdrożenia zwraca się już po <strong>jednym</strong> przejętym zleceniu.</p>
         </div>
       </div>
     </div>
@@ -508,7 +877,7 @@
     <div class="container">
       <div class="sec-title">
         <h2>Przejrzysty abonament bez gwiazdek</h2>
-        <p>Płacisz tylko za realnie działający system. Rezygnujesz w dowolnym momencie.</p>
+        <p>Jasne zasady rozliczeń i elastyczna współpraca dopasowana do wielkości warsztatu.</p>
       </div>
       <div class="pricing">
         <div class="p-card">
@@ -518,9 +887,9 @@
           <ul class="p-features">
             <li>Odbieranie połączeń 24/7 pod Twoim numerem</li>
             <li>250 minut rozmów w pakiecie miesięcznym</li>
-            <li>Powiadomienia SMS po każdej rozmowie</li>
-            <li>Przełączanie pilnych spraw na Twój telefon</li>
-            <li>Konfiguracja pod Twój cennik i godziny pracy</li>
+            <li>Podsumowanie i powiadomienie po każdej rozmowie</li>
+            <li>Wywiad serwisowy (auto, usterka, preferowany termin)</li>
+            <li>Konfiguracja pod Twój profil i godziny pracy</li>
           </ul>
           <a href="#start" class="btn btn-ghost" style="width: 100%;">Wybieram Pakiet Start</a>
         </div>
@@ -533,9 +902,9 @@
           <ul class="p-features">
             <li>Wszystko z pakietu Start</li>
             <li>500 minut rozmów w pakiecie miesięcznym</li>
-            <li><strong>Automatyczne wpisywanie wizyt w Kalendarz Google</strong></li>
-            <li>SMS-y przypominające o wizycie dla kierowców</li>
-            <li>Obsługa wielu stanowisk (np. wulkanizacja + mechanika)</li>
+            <li><strong>Integracja z kalendarzem i harmonogramem wizyt</strong></li>
+            <li>Powiadomienia SMS / przypomnienia dla kierowców</li>
+            <li>Obsługa wielu stanowisk (wulkanizacja + mechanika)</li>
           </ul>
           <a href="#start" class="btn btn-primary" style="width: 100%;">Wybieram Warsztat Pro</a>
         </div>
@@ -547,35 +916,35 @@
     <div class="container">
       <div class="sec-title">
         <h2>Uruchom asystenta w 24 godziny</h2>
-        <p>Zostaw kontakt — przygotujemy Twojego dedykowanego asystenta pod Twój cennik i uruchomimy 14-dniowy test.</p>
+        <p>Zostaw kontakt — przygotujemy dedykowaną konfigurację dla Twojego warsztatu i uruchomimy 14-dniowy test.</p>
       </div>
       <div class="order-box">
-        <form id="order-form">
+        <form id="order-form" novalidate>
           <div class="field">
-            <label>Nazwa warsztatu / firmy</label>
-            <input type="text" id="company" placeholder="np. Wulkanizacja Auto-Gum" required>
+            <label for="company">Nazwa warsztatu / firmy</label>
+            <input type="text" id="company" name="company" placeholder="np. Wulkanizacja Auto-Gum" required />
           </div>
           <div class="field">
-            <label>Twoje imię</label>
-            <input type="text" id="name" placeholder="np. Tomasz" required>
+            <label for="name">Twoje imię</label>
+            <input type="text" id="name" name="name" placeholder="np. Tomasz" required />
           </div>
           <div class="field">
-            <label>Numer telefonu komórkowego</label>
-            <input type="tel" id="phone" placeholder="np. 601 234 567" required>
+            <label for="phone">Numer telefonu komórkowego</label>
+            <input type="tel" id="phone" name="phone" placeholder="np. 601 234 567" required />
           </div>
           <div class="field">
-            <label>Rodzaj działalności</label>
-            <select id="type">
+            <label for="type">Rodzaj działalności</label>
+            <select id="type" name="type">
               <option value="Wulkanizacja / Serwis opon">Wulkanizacja / Serwis opon</option>
               <option value="Warsztat mechaniczny">Warsztat mechaniczny</option>
               <option value="Autodetailing / Myjnia">Autodetailing / Myjnia</option>
               <option value="Inna branża">Inna branża</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 16px;">
+          <button id="order-submit" type="submit" class="btn btn-primary" style="width: 100%; font-size: 16px;">
             Zamawiam wdrożenie i 14-dniowy test
           </button>
-          <p id="status-msg" style="margin-top: 14px; text-align: center; font-size: 14px; color: var(--green); display: none;"></p>
+          <div id="status-msg" class="form-status" role="status" aria-live="polite"></div>
         </form>
       </div>
     </div>
@@ -583,7 +952,7 @@
 
   <footer>
     <div class="container">
-      © 2026 Warsztat24 – Wirtualna recepcja dla warsztatów samochodowych i wulkanizacji.
+      © 2026 Warsztat24 – Wirtualny doradca serwisowy dla warsztatów samochodowych i wulkanizacji.
     </div>
   </footer>
 
@@ -592,53 +961,89 @@
 
     const rCalls = document.getElementById("r-calls");
     const rVal = document.getElementById("r-val");
+
     function calc() {
       const c = Number(rCalls.value);
       const v = Number(rVal.value);
-      document.getElementById("r-calls-txt").innerText = c + (c === 1 ? " telefon" : (c < 5 ? " telefony" : " telefonów"));
+      document.getElementById("r-calls-txt").innerText =
+        c + (c === 1 ? " telefon" : (c < 5 ? " telefony" : " telefonów"));
       document.getElementById("r-val-txt").innerText = v + " zł";
-      document.getElementById("loss-total").innerText = Math.round(c * 0.5 * v * 22).toLocaleString("pl-PL") + " zł";
+      document.getElementById("loss-total").innerText =
+        Math.round(c * 0.5 * v * 22).toLocaleString("pl-PL") + " zł";
     }
+
     rCalls.addEventListener("input", calc);
     rVal.addEventListener("input", calc);
+    calc();
 
     const client = new RetellWebClient();
     const btn = document.getElementById("demo-btn");
     const wave = document.getElementById("wave-box");
+    const callStatus = document.getElementById("call-status");
     let active = false;
+    let starting = false;
+
+    function setCallStatus(type, message) {
+      if (!message) {
+        callStatus.className = "call-status";
+        callStatus.textContent = "";
+        return;
+      }
+      callStatus.className = `call-status ${type}`;
+      callStatus.textContent = message;
+    }
+
+    function resetCallUi() {
+      btn.disabled = false;
+      btn.innerText = "🎙️ Kliknij i porozmawiaj z Adamem";
+      btn.classList.remove("calling");
+      wave.classList.remove("speaking");
+      active = false;
+      starting = false;
+    }
 
     client.on("call_started", () => {
-      btn.innerText = "🔴 Zakończ rozmowę testową";
+      starting = false;
+      active = true;
+      btn.disabled = false;
+      btn.innerText = "🔴 Zakończ rozmowę z Adamem";
       btn.classList.add("calling");
       wave.classList.add("speaking");
-      active = true;
+      setCallStatus("info", "Połączono z Adamem. Mów naturalnie — zezwól przeglądarce na mikrofon, jeśli pojawi się prośba.");
     });
 
     client.on("call_ended", () => {
-      btn.innerText = "🎙️ Kliknij i porozmawiaj z asystentem";
-      btn.classList.remove("calling");
-      wave.classList.remove("speaking");
-      active = false;
+      resetCallUi();
+      setCallStatus("info", "Rozmowa zakończona. Możesz rozpocząć kolejny test w dowolnym momencie.");
     });
 
     client.on("error", (err) => {
-      alert("Błąd połączenia: " + (err?.message || "Sprawdź mikrofon w przeglądarce"));
-      btn.innerText = "🎙️ Kliknij i porozmawiaj z asystentem";
-      btn.classList.remove("calling");
-      wave.classList.remove("speaking");
-      active = false;
+      resetCallUi();
+      setCallStatus(
+        "error",
+        "Nie udało się utrzymać połączenia: " + (err?.message || "Sprawdź uprawnienia mikrofonu w przeglądarce.")
+      );
     });
 
     btn.addEventListener("click", async () => {
+      if (starting) return;
       if (active) {
+        btn.disabled = true;
         client.stopCall();
         return;
       }
-      btn.innerText = "Łączenie z recepcją...";
+
+      starting = true;
+      btn.disabled = true;
+      btn.innerText = "Łączenie z Adamem...";
+      setCallStatus("info", "Nawiązywanie połączenia z linią testową...");
+
       try {
         const res = await fetch("/api/call", { method: "POST" });
-        const data = await res.json();
-        if (!data.access_token) throw new Error(data.error || "Brak tokena z serwera");
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.access_token) {
+          throw new Error(data.error || `Błąd serwera (${res.status}) — brak tokena połączenia.`);
+        }
         await client.startCall({
           callId: data.call_id,
           accessToken: data.access_token,
@@ -646,32 +1051,58 @@
           iceServers: data.ice_servers
         });
       } catch (e) {
-        alert("Nie udało się połączyć: " + e.message);
-        btn.innerText = "🎙️ Kliknij i porozmawiaj z asystentem";
+        resetCallUi();
+        setCallStatus("error", "Nie udało się połączyć: " + (e?.message || "Spróbuj ponownie za chwilę."));
       }
     });
 
-    document.getElementById("order-form").addEventListener("submit", async (e) => {
+    const orderForm = document.getElementById("order-form");
+    const orderSubmit = document.getElementById("order-submit");
+    const statusMsg = document.getElementById("status-msg");
+
+    orderForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const msg = document.getElementById("status-msg");
-      msg.style.display = "block";
-      msg.innerText = "Wysyłanie zgłoszenia...";
+
+      const payload = {
+        company: document.getElementById("company").value.trim(),
+        name: document.getElementById("name").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        type: document.getElementById("type").value
+      };
+
+      if (!payload.company || !payload.name || !payload.phone) {
+        statusMsg.className = "form-status error";
+        statusMsg.textContent = "Uzupełnij nazwę warsztatu, imię oraz numer telefonu.";
+        return;
+      }
+
+      orderSubmit.disabled = true;
+      statusMsg.className = "form-status";
+      statusMsg.textContent = "";
 
       try {
-        await fetch("/api/lead", {
+        const res = await fetch("/api/lead", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            company: document.getElementById("company").value,
-            name: document.getElementById("name").value,
-            phone: document.getElementById("phone").value,
-            type: document.getElementById("type").value
-          })
+          body: JSON.stringify(payload)
         });
-        msg.innerText = "✓ Zgłoszenie wysłane! Oddzwonimy wkrótce, aby uruchomić Twój numer testowy.";
-        e.target.reset();
+        const data = await res.json().catch(() => ({}));
+
+        if (!res.ok) {
+          throw new Error(data.error || "Zgłoszenie nie zostało zapisane.");
+        }
+
+        statusMsg.className = "form-status success";
+        statusMsg.textContent = "✓ Zgłoszenie wysłane! Skontaktujemy się, aby przygotować test dla Twojego warsztatu.";
+        orderForm.reset();
       } catch (err) {
-        msg.innerText = "✓ Dziękujemy! Zgłoszenie zapisane.";
+        statusMsg.className = "form-status error";
+        statusMsg.textContent =
+          "Nie udało się wysłać zgłoszenia automatycznie (" +
+          (err?.message || "brak połączenia z endpointem /api/lead") +
+          "). Skontaktuj się z nami telefonicznie.";
+      } finally {
+        orderSubmit.disabled = false;
       }
     });
   </script>
